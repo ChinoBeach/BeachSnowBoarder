@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     SurfaceEffector2D surfaceEffecor2D;
     [SerializeField] float fltBoostSpeed = 30f;
     [SerializeField] float fltBaseSpeed = 20f;
+    bool canMove = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +23,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        RespondToBoost();
+        if (canMove)
+        {
+            RotatePlayer();
+            RespondToBoost();
+        }
     }
 
+    public void DisableControl()
+    {
+        canMove = false;
+    }
      void RotatePlayer()
     {
         //if you press the left key, turn left

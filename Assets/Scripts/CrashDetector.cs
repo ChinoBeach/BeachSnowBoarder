@@ -14,7 +14,9 @@ public class CrashDetector : MonoBehaviour
         //If you bump your head
         if(other.tag == "Ground")
         {
-            //if you hit your head(lose), restart the game
+            //if you hit your head(lose), restart the game, also make it so that you cant move anymore
+            FindObjectOfType<PlayerController>().DisableControl();
+            
             crashEffect.Play();
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke("ReloadScene", fltLoadDelay);
