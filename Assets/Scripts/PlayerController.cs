@@ -7,18 +7,27 @@ public class PlayerController : MonoBehaviour
     //Member variables
     Rigidbody2D rb2d;
     [SerializeField] float fltTorqueAmount = 1f;
+    SurfaceEffector2D surfaceEffecor2D;
+    [SerializeField] float fltBoostSpeed = 30f;
+    [SerializeField] float fltBaseSpeed = 20f;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+        surfaceEffecor2D = FindObjectOfType<SurfaceEffector2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        RotatePlayer();
+        RespondToBoost();
+    }
+
+     void RotatePlayer()
+    {
         //if you press the left key, turn left
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb2d.AddTorque(fltTorqueAmount);
             Debug.Log("Left Torque");
@@ -29,5 +38,26 @@ public class PlayerController : MonoBehaviour
             rb2d.AddTorque(-fltTorqueAmount);
             Debug.Log("Right Torque");
         }
+
+     
+
+        }
+
+    void RespondToBoost()
+    {
+        // if we push up, speed up
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            surfaceEffecor2D.speed = fltBoostSpeed;
+
+        }
+        else
+        {
+            surfaceEffecor2D.speed = fltBaseSpeed;
+        }
     }
+
+
+
+
 }
