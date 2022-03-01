@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
    void OnTriggerEnter2D(Collider2D other)
     {
-        //If yoy bump your head
+        //If you bump your head
         if(other.tag == "Ground")
         {
-            Debug.Log("You bumped your head");
+            //if you hit your head(lose), restart the game
+            SceneManager.LoadScene(0);
         }
     }
 }
