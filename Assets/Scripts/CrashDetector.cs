@@ -8,6 +8,7 @@ public class CrashDetector : MonoBehaviour
     //memeber variables
     [SerializeField] float fltLoadDelay = .5f;
     [SerializeField] ParticleSystem crashEffect;
+    [SerializeField] AudioClip crashSFX;
     void OnTriggerEnter2D(Collider2D other)
     {
         //If you bump your head
@@ -15,6 +16,7 @@ public class CrashDetector : MonoBehaviour
         {
             //if you hit your head(lose), restart the game
             crashEffect.Play();
+            GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke("ReloadScene", fltLoadDelay);
         }
     }
