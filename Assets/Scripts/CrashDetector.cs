@@ -7,12 +7,14 @@ public class CrashDetector : MonoBehaviour
 {
     //memeber variables
     [SerializeField] float fltLoadDelay = .5f;
-   void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] ParticleSystem crashEffect;
+    void OnTriggerEnter2D(Collider2D other)
     {
         //If you bump your head
         if(other.tag == "Ground")
         {
             //if you hit your head(lose), restart the game
+            crashEffect.Play();
             Invoke("ReloadScene", fltLoadDelay);
         }
     }

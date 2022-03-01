@@ -7,12 +7,14 @@ public class FinishLine : MonoBehaviour
 {
     //member variables
     [SerializeField] float fltDelayTime = .5f;
+    [SerializeField] ParticleSystem finishEffect;
     void OnTriggerEnter2D(Collider2D other)
     {
         //if the player crosses the finish line
 
         if(other.tag == "Player")
         {
+            finishEffect.Play();
             Invoke("ReloadScene", fltDelayTime);
         }
         
